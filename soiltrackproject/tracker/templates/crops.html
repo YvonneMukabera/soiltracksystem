@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}SoilTrack – Crops{% endblock %}
+{% block page_label %}Crops{% endblock %}
+
+{% block content %}
+<a href="{% url 'home' %}" class="back-link"><span>←</span>Back to Home</a>
+
+<div class="page-title">
+    <div>
+        <h1>Crop Information and Database</h1>
+        <p>Explore crop categories, view details, and compare options suitable for your soil conditions.</p>
+    </div>
+</div>
+
+<section class="categories">
+    <div class="categories-title">
+        <span>📂</span><strong>Crop Categories</strong>
+    </div>
+    <div class="cat-badges">
+        <button class="cat-pill selected">Root vegetables<br><span>selected</span></button>
+        <button class="cat-pill">Fruit trees<br><span>click</span></button>
+        <button class="cat-pill">Grain<br><span>click</span></button>
+        <button class="cat-pill">Leafy greens<br><span>click</span></button>
+    </div>
+</section>
+
+<section class="db-section">
+    <div class="db-title">
+        <span>💾</span><strong>Root Vegetables Database</strong>
+    </div>
+
+    <div class="crop-grid">
+        <article class="crop-card">
+            <div class="crop-header">
+                <span class="crop-name">Carrots</span>
+            </div>
+            <p class="crop-desc">Orange root vegetable, rich in beta-carotene. Grows best in loose, well-drained soil with neutral pH.</p>
+            <p class="crop-desc"><strong>Harvest:</strong> 70–90 days · <strong>Season:</strong> Spring/Fall</p>
+            <button class="view-btn orange">View Details</button>
+        </article>
+
+        <article class="crop-card">
+            <div class="crop-header">
+                <span class="crop-name">Radishes</span>
+            </div>
+            <p class="crop-desc">Fast-growing root crop with peppery flavor. Prefers cool weather and well-drained soil.</p>
+            <p class="crop-desc"><strong>Harvest:</strong> 25–30 days · <strong>Season:</strong> Spring/Fall</p>
+            <button class="view-btn green">View Details</button>
+        </article>
+
+        <article class="crop-card">
+            <div class="crop-header">
+                <span class="crop-name">Beet</span>
+            </div>
+            <p class="crop-desc">Nutritious root vegetable with sweet flavor. Requires consistent moisture and fertile soil.</p>
+            <p class="crop-desc"><strong>Harvest:</strong> 50–70 days · <strong>Season:</strong> Spring/Fall</p>
+            <button class="view-btn red">View Details</button>
+        </article>
+
+        <article class="crop-card">
+            <div class="crop-header">
+                <span class="crop-name">Celeriac</span>
+            </div>
+            <p class="crop-desc">Cross between turnip and cabbage, grown mainly for its swollen root. Prefers cool climate.</p>
+            <p class="crop-desc"><strong>Harvest:</strong> 80–100 days · <strong>Season:</strong> Fall/Winter</p>
+            <button class="view-btn gray">View Details</button>
+        </article>
+    </div>
+</section>
+
+<section class="comparison">
+    <div class="comparison-title">
+        <span>⚖️</span><strong>Crop Comparison Tool</strong>
+    </div>
+    <p style="font-size:13px;margin-bottom:8px;">Select crops to compare</p>
+
+    <div class="compare-list">
+        <label class="compare-item">
+            <input type="checkbox"> Beet
+        </label>
+        <label class="compare-item">
+            <input type="checkbox"> Celeriac
+        </label>
+        <label class="compare-item">
+            <input type="checkbox"> Radishes
+        </label>
+        <label class="compare-item">
+            <input type="checkbox"> Carrots
+        </label>
+    </div>
+
+    <button class="compare-btn">Compare selected crops</button>
+</section>
+{% endblock %}

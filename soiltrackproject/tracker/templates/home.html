@@ -1,0 +1,145 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}SoilTrack – Home Dashboard{% endblock %}
+{% block page_label %}Home{% endblock %}
+
+{% block content %}
+<section class="welcome">
+    <h1>Welcome to SoilTrack Platform!</h1>
+    <p>Here, farmers access soil data and tips to boost crop health, make smart choices, and farm sustainably.</p>
+</section>
+
+<section class="controls">
+    <label for="farm-select">Select Farm ID</label>
+    <select id="farm-select">
+        <option>All</option>
+        <option>Field A – DO1-A</option>
+        <option>Field B – DO1-B</option>
+    </select>
+</section>
+
+<section class="status-card">
+    <div class="status-left">
+        <h2>System Operational</h2>
+        <p>All sensors are connected and functioning normally.</p>
+    </div>
+    <div class="status-right">
+        <div>Last updated: just now</div>
+        <div>Field ID: FARM-DO1-A</div>
+        <button>Refresh</button>
+    </div>
+</section>
+
+<section>
+    <h2 class="section-title">Real Time Soil Analysis</h2>
+    <div class="card-row">
+        <div class="metric-card">
+            <h3>pH Level</h3>
+            <p>6.3 (optimal 6.0–7.0)</p>
+        </div>
+        <div class="metric-card">
+            <h3>Moisture</h3>
+            <p>29% (target 20–35%)</p>
+        </div>
+        <div class="metric-card">
+            <h3>Temperature</h3>
+            <p>22°C (range 18–28°C)</p>
+        </div>
+        <div class="metric-card">
+            <h3>Nitrogen</h3>
+            <p>118 ppm (medium)</p>
+        </div>
+    </div>
+</section>
+
+<section class="health-panel">
+    <h2 class="section-title" style="margin-top:0;">Soil Health Analysis</h2>
+
+    <div class="health-item">
+        <header><span>Nutrient balance</span><span>Excellent</span></header>
+        <div class="bar-bg"><div class="bar-fill bar-green" style="width:90%;"></div></div>
+    </div>
+
+    <div class="health-item">
+        <header><span>Organic matter</span><span>Moderate</span></header>
+        <div class="bar-bg"><div class="bar-fill bar-yellow" style="width:60%;"></div></div>
+    </div>
+
+    <div class="health-item">
+        <header><span>Drainage</span><span>Good</span></header>
+        <div class="bar-bg"><div class="bar-fill bar-blue" style="width:75%;"></div></div>
+    </div>
+
+    <div class="health-item">
+        <header><span>pH stability</span><span>Excellent</span></header>
+        <div class="bar-bg"><div class="bar-fill bar-green" style="width:95%;"></div></div>
+    </div>
+</section>
+
+<section class="recommendations">
+    <strong>Recommendations</strong>
+    <p>• Add compost to increase organic matter content.</p>
+    <p>• Plant nitrogen-fixing cover crops in off-season.</p>
+    <p>• Maintain current watering schedule for optimal moisture.</p>
+</section>
+
+<section>
+    <h2 class="section-title">Embedded System Status</h2>
+    <div class="embedded-grid">
+        <div class="embed-card">
+            <h4>North field – Node 1</h4>
+            <p>Battery 87% · Active</p>
+        </div>
+        <div class="embed-card">
+            <h4>North field – Node 2</h4>
+            <p>Battery 57% · Active</p>
+        </div>
+        <div class="embed-card">
+            <h4>East field – Node 3</h4>
+            <p>Battery 30% · About to die</p>
+        </div>
+        <div class="embed-card">
+            <h4>Gateway hub</h4>
+            <p>Signal: Excellent · Data flow normal</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2 class="section-title">Practical Guidance</h2>
+    <div class="practical-grid">
+        <div class="practical-card">
+            <h4>Water Management</h4>
+            <ul>
+                <li>Use drip irrigation where possible.</li>
+                <li>Monitor soil moisture weekly.</li>
+                <li>Adjust watering before heavy rain.</li>
+            </ul>
+        </div>
+        <div class="practical-card">
+            <h4>Pest Control</h4>
+            <ul>
+                <li>Regular scouting in wetter corners.</li>
+                <li>Use safe, recommended products.</li>
+                <li>Rotate crops to break pest cycles.</li>
+            </ul>
+        </div>
+        <div class="practical-card">
+            <h4>Soil Health</h4>
+            <ul>
+                <li>Test soil each season.</li>
+                <li>Use cover crops to protect bare soil.</li>
+                <li>Limit heavy tillage where possible.</li>
+            </ul>
+        </div>
+        <div class="practical-card">
+            <h4>Storage Solutions</h4>
+            <ul>
+                <li>Dry grains fully before storage.</li>
+                <li>Keep bags off the floor.</li>
+                <li>Inspect stores for pests monthly.</li>
+            </ul>
+        </div>
+    </div>
+</section>
+{% endblock %}

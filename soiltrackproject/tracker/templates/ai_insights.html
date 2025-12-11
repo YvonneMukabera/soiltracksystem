@@ -1,0 +1,111 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}SoilTrack – AI Insights{% endblock %}
+{% block page_label %}AI Insights{% endblock %}
+
+{% block content %}
+<a href="{% url 'home' %}" class="back-link"><span>←</span>Back to Home</a>
+
+<div class="page-title">
+    <div>
+        <h1>AI Crop Insights &amp; Recommendations</h1>
+        <p>Comprehensive AI analysis of soil conditions and crop suitability for your selected field.</p>
+    </div>
+</div>
+
+<section class="summary-grid">
+    <div class="summary-card">
+        <h2>AI Analysis Summary</h2>
+        <p>Based on current soil conditions, your field shows excellent potential for nitrogen-rich crops. The pH level is slightly acidic, which is ideal for potatoes and beans. Moisture levels are optimal for most vegetable crops.</p>
+        <p>The AI model has analyzed over 50 parameters including soil composition, weather patterns, historical yield data, and farmer practices to generate these recommendations. Overall confidence for this recommendation is 94.7%.</p>
+    </div>
+
+    <aside class="top-crops">
+        <h3>Top Crop Recommendations</h3>
+
+        <div class="crop-rec crop-orange">
+            <strong>Carrots</strong>
+            <span>Performs well in your loose, well-drained soil with stable moisture.</span>
+        </div>
+        <div class="crop-rec crop-green">
+            <strong>Lettuce</strong>
+            <span>Best for cooler periods; benefits from steady water supply.</span>
+        </div>
+        <div class="crop-rec crop-pink">
+            <strong>Radishes</strong>
+            <span>Fast maturing crop, low risk, ideal for quick returns.</span>
+        </div>
+
+        <button class="download-btn">Download Report</button>
+    </aside>
+</section>
+
+<section class="env-grid">
+    <div class="env-card">
+        <h4>Environmental Factors</h4>
+        <p><strong>Sunlight exposure:</strong> Optimal (6–8 hours daily)</p>
+        <p><strong>Rainfall pattern:</strong> Adequate, well-distributed</p>
+        <p><strong>Wind conditions:</strong> Moderate, good for pollination</p>
+    </div>
+
+    <div class="index-card">
+        <h4>Soil Suitability Index</h4>
+        <p>Nutrient availability – 88%</p>
+        <div class="index-bar-bg"><div class="index-bar-fill" style="width:88%;"></div></div>
+        <p style="margin-top:8px;">Water retention – 90%</p>
+        <div class="index-bar-bg"><div class="index-bar-fill" style="width:90%;"></div></div>
+        <p style="margin-top:8px;">Drainage quality – 78%</p>
+        <div class="index-bar-bg"><div class="index-bar-fill" style="width:78%;"></div></div>
+    </div>
+</section>
+
+<section>
+    <h2 style="font-size:18px;margin:10px 0 6px;">Detailed Crop Suitability Analysis</h2>
+    <table>
+        <thead>
+        <tr>
+            <th>Crop</th>
+            <th>Suitability</th>
+            <th>Soil pH Match</th>
+            <th>Nutrient Needs</th>
+            <th>Water Requirements</th>
+            <th>Expected Yield</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Carrots</td>
+            <td>92%</td>
+            <td class="badge-good">Excellent</td>
+            <td class="badge-good">Well matches</td>
+            <td>Optimal</td>
+            <td>High (8–10 t/ha)</td>
+        </tr>
+        <tr>
+            <td>Lettuce</td>
+            <td>87%</td>
+            <td class="badge-good">Good</td>
+            <td class="badge-good">Well matches</td>
+            <td class="badge-low">Low</td>
+            <td>Medium (7–8 t/ha)</td>
+        </tr>
+        <tr>
+            <td>Radishes</td>
+            <td>82%</td>
+            <td class="badge-good">Good</td>
+            <td class="badge-medium">Moderate</td>
+            <td>Moderate</td>
+            <td>Medium (5–6 t/ha)</td>
+        </tr>
+        <tr>
+            <td>Peppers</td>
+            <td>76%</td>
+            <td class="badge-medium">Moderate</td>
+            <td class="badge-good">Well matches</td>
+            <td>Moderate</td>
+            <td>High (10–12 t/ha)</td>
+        </tr>
+        </tbody>
+    </table>
+</section>
+{% endblock %}

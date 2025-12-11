@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}SoilTrack – Cooperatives{% endblock %}
+{% block page_label %}Cooperatives{% endblock %}
+
+{% block content %}
+<a href="{% url 'home' %}" class="back-link"><span>←</span>Back to Home</a>
+
+<div class="page-title">
+    <div>
+        <h1>Cooperative Overview</h1>
+        <p>Manage farmer groups, track members, and coordinate shared activities within your cooperative.</p>
+    </div>
+    <button class="add-btn">+ Add new member</button>
+</div>
+
+<section class="grid-3">
+    <div class="card">
+        <div class="card-title">Total Members</div>
+        <div class="card-main">
+            <span class="value">86</span>
+            <span class="unit">farmers</span>
+        </div>
+        <div class="card-footnote">12 new members joined this season.</div>
+    </div>
+
+    <div class="card">
+        <div class="card-title">Registered Farms</div>
+        <div class="card-main">
+            <span class="value">143</span>
+            <span class="unit">plots</span>
+        </div>
+        <div class="card-footnote">Covering 278 ha across 4 sectors.</div>
+    </div>
+
+    <div class="card">
+        <div class="card-title">Active Groups</div>
+        <div class="card-main">
+            <span class="value">6</span>
+            <span class="unit">teams</span>
+        </div>
+        <div class="card-footnote">Irrigation, seed purchase, storage, training &amp; more.</div>
+    </div>
+</section>
+
+<section>
+    <div class="section-header">
+        <h2>Cooperative Members</h2>
+        <span>Sample data – connect to your Django models later.</span>
+    </div>
+
+    <div class="filter-bar">
+        <select>
+            <option>All villages</option>
+            <option>Kimisagara</option>
+            <option>Muganza</option>
+            <option>Runda</option>
+        </select>
+        <select>
+            <option>All crops</option>
+            <option>Maize</option>
+            <option>Beans</option>
+            <option>Potatoes</option>
+        </select>
+        <input type="text" placeholder="Search member name…">
+    </div>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Member</th>
+            <th>Village</th>
+            <th>Main Crop</th>
+            <th>Farm Size</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>Nyirahabineza Claire</td>
+            <td>Runda</td>
+            <td>Maize &amp; Beans</td>
+            <td>1.4 ha</td>
+            <td><span class="badge active">Active</span></td>
+        </tr>
+        <tr>
+            <td>Hakizimana Jean</td>
+            <td>Muganza</td>
+            <td>Irish potatoes</td>
+            <td>0.9 ha</td>
+            <td><span class="badge active">Active</span></td>
+        </tr>
+        <tr>
+            <td>Uwase Ange</td>
+            <td>Kimisagara</td>
+            <td>Vegetables</td>
+            <td>0.6 ha</td>
+            <td><span class="badge pending">Pending fees</span></td>
+        </tr>
+        <tr>
+            <td>Mutabazi Eric</td>
+            <td>Muganza</td>
+            <td>Cassava</td>
+            <td>1.1 ha</td>
+            <td><span class="badge inactive">Inactive</span></td>
+        </tr>
+        </tbody>
+    </table>
+</section>
+
+<section class="grid-2" style="margin-top:18px;">
+    <div class="card">
+        <div class="section-header" style="margin-top:0;">
+            <h2>Farmer Groups</h2>
+            <span>Working teams inside the cooperative.</span>
+        </div>
+        <ul class="group-list">
+            <li>
+                <div class="group-label">Irrigation &amp; Water Management</div>
+                <div class="group-meta">18 members · Focus: shared pumps, water scheduling</div>
+            </li>
+            <li>
+                <div class="group-label">Seed &amp; Input Purchase</div>
+                <div class="group-meta">24 members · Negotiates bulk prices for inputs</div>
+            </li>
+            <li>
+                <div class="group-label">Post-harvest &amp; Storage</div>
+                <div class="group-meta">15 members · Shared storage and drying facilities</div>
+            </li>
+            <li>
+                <div class="group-label">Training &amp; Extension</div>
+                <div class="group-meta">10 members · Coordinates with agronomists &amp; SoilTrack tips</div>
+            </li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <div class="section-header" style="margin-top:0;">
+            <h2>Cooperative Activities</h2>
+            <span>Recent events &amp; planned actions.</span>
+        </div>
+        <ul class="activity-list">
+            <li>
+                12 Oct – Soil health workshop with sector agronomist
+                <span class="activity-tag">Training</span>
+            </li>
+            <li>
+                18 Oct – Bulk fertilizer order for Season B
+                <span class="activity-tag">Purchase</span>
+            </li>
+            <li>
+                25 Oct – Group visit to demo smart irrigation field
+                <span class="activity-tag">Field trip</span>
+            </li>
+            <li>
+                02 Nov – General assembly &amp; savings update
+                <span class="activity-tag">Meeting</span>
+            </li>
+        </ul>
+    </div>
+</section>
+{% endblock %}

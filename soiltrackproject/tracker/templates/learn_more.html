@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}SoilTrack – Learn More{% endblock %}
+{% block page_label %}Learn more{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-img">
+        <img src="{% static 'img/learn-more-hero.jpg' %}" alt="Soil sensors in the field">
+    </div>
+    <div class="hero-text">
+        <h1>Continuously tracks soil moisture, temperature, and nutrient levels.</h1>
+        <p>This system provides farmers with live soil conditions through connected sensors, helping them take quick action to prevent crop stress and optimize irrigation.</p>
+    </div>
+</section>
+
+<section class="summary-card info-card">
+    <p>This system is designed as an intelligent, data-driven platform that helps farmers understand the true condition of their soil and make smarter, more timely decisions. By combining live sensor data, AI analysis, and historical insights, it transforms raw information into clear, actionable guidance.</p>
+    <p>Beyond basic monitoring, the system streamlines farm management by connecting devices, analyzing trends, and reporting them in a simple interface. Whether farmers are choosing crops, planning input use, or preparing for weather changes, SoilTrack supports decisions that protect soil resources and increase yields.</p>
+    <p>With an intuitive interface and automation, the system is suitable for both cooperatives and individual farmers. It supports better record-keeping, shared learning among members, and sustainable farming practices.</p>
+    <button class="btn-primary" style="margin-top:12px;">Get started</button>
+</section>
+{% endblock %}

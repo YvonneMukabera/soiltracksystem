@@ -1,0 +1,128 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}SoilTrack – History{% endblock %}
+{% block page_label %}History{% endblock %}
+
+{% block content %}
+<a href="{% url 'home' %}" class="back-link"><span>←</span>Back to Home</a>
+
+<div class="page-title">
+    <div>
+        <h1>Historical Soil Data &amp; Trends</h1>
+        <p>Explore changes in soil parameters over time to understand trends and improve planning.</p>
+    </div>
+</div>
+
+<section class="layout">
+    <aside class="filter-card">
+        <h3>Data Filters</h3>
+
+        <div class="filter-group">
+            <label>Time Period</label>
+            <select>
+                <option>Last 30 days</option>
+                <option>Last 90 days</option>
+                <option>This season</option>
+                <option>Custom range</option>
+            </select>
+        </div>
+
+        <div class="filter-group">
+            <label>Parameters</label>
+            <div class="filter-options">
+                <label><input type="checkbox" checked> pH level</label>
+                <label><input type="checkbox"> Moisture content</label>
+                <label><input type="checkbox"> Temperature</label>
+                <label><input type="checkbox"> Nitrogen</label>
+                <label><input type="checkbox"> Phosphorus</label>
+                <label><input type="checkbox"> Potassium</label>
+            </div>
+        </div>
+
+        <div class="filter-group">
+            <label>Field Section</label>
+            <select>
+                <option>All fields</option>
+                <option>North block</option>
+                <option>East block</option>
+                <option>Demo plot</option>
+            </select>
+        </div>
+    </aside>
+
+    <div class="content-area">
+        <div class="chart-card">
+            <div class="chart-header">
+                <span>Soil Parameter Trends (pH)</span>
+                <span style="font-size:12px;color:#6b7280;">Oct 01 – Oct 10, 2025</span>
+            </div>
+            <div class="chart-placeholder">
+                Line chart placeholder – connect to chart library later
+            </div>
+        </div>
+
+        <div>
+            <h3 style="font-size:16px;margin:4px 0 6px;">Detailed Historical Data</h3>
+            <table>
+                <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>pH Level</th>
+                    <th>Moisture (%)</th>
+                    <th>Temperature (°C)</th>
+                    <th>Nitrogen (ppm)</th>
+                    <th>Phosphorus (ppm)</th>
+                    <th>Potassium (ppm)</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>2025-10-01</td>
+                    <td>6.2</td>
+                    <td>32</td>
+                    <td>21</td>
+                    <td>118</td>
+                    <td>42</td>
+                    <td>175</td>
+                </tr>
+                <tr>
+                    <td>2025-10-05</td>
+                    <td>6.3</td>
+                    <td>29</td>
+                    <td>22</td>
+                    <td>122</td>
+                    <td>44</td>
+                    <td>178</td>
+                </tr>
+                <tr>
+                    <td>2025-10-07</td>
+                    <td>6.0</td>
+                    <td>31</td>
+                    <td>20</td>
+                    <td>115</td>
+                    <td>40</td>
+                    <td>169</td>
+                </tr>
+                <tr>
+                    <td>2025-10-10</td>
+                    <td>6.3</td>
+                    <td>30</td>
+                    <td>22</td>
+                    <td>123</td>
+                    <td>43</td>
+                    <td>180</td>
+                </tr>
+                </tbody>
+            </table>
+
+            <div class="pagination">
+                <button>Previous</button>
+                <button class="active">1</button>
+                <button>2</button>
+                <button>3</button>
+                <button>Next</button>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}

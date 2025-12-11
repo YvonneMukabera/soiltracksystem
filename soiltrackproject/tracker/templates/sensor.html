@@ -1,0 +1,100 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}SoilTrack – Sensors{% endblock %}
+{% block page_label %}Sensor{% endblock %}
+
+{% block content %}
+<a href="{% url 'home' %}" class="back-link"><span>←</span>Back to Home</a>
+
+<div class="page-title">
+    <div>
+        <h1>Sensor Network Management</h1>
+        <p>Monitor sensor health, add new devices, and keep your network running smoothly.</p>
+    </div>
+</div>
+
+<section class="overview-grid">
+    <div class="stat-card">
+        <h3>Active Sensors</h3>
+        <span>12</span>
+        <p>All registered sensors are reporting data.</p>
+    </div>
+    <div class="stat-card">
+        <h3>Avg. Battery</h3>
+        <span>94%</span>
+        <p>Most nodes have enough power for this season.</p>
+    </div>
+    <div class="stat-card">
+        <h3>Network Uptime</h3>
+        <span>99.8%</span>
+        <p>Last downtime: 3 minutes due to power cut.</p>
+    </div>
+</section>
+
+<section class="gateway-card">
+    <h3>Gateway Hub</h3>
+    <ul>
+        <li>Connected to cloud</li>
+        <li>Signal strength: Excellent</li>
+        <li>Data flow: Normal</li>
+    </ul>
+</section>
+
+<section class="layout-grid">
+    <div class="card">
+        <h2>Sensor Configuration</h2>
+
+        <div class="form-row">
+            <label for="sensor-id">Sensor ID</label>
+            <input id="sensor-id" type="text" placeholder="enter unique id">
+        </div>
+
+        <div class="form-row">
+            <label for="location">Location</label>
+            <input id="location" type="text" placeholder="enter location">
+        </div>
+
+        <div class="form-row">
+            <label>Sensor Type</label>
+            <div class="sensor-type-grid">
+                <label class="sensor-type-option">
+                    <input type="checkbox"> Soil moisture
+                </label>
+                <label class="sensor-type-option">
+                    <input type="checkbox"> Soil temperature
+                </label>
+                <label class="sensor-type-option">
+                    <input type="checkbox"> pH sensor
+                </label>
+                <label class="sensor-type-option">
+                    <input type="checkbox"> NPK sensor
+                </label>
+            </div>
+        </div>
+
+        <button class="btn-add">+ Add sensor</button>
+    </div>
+
+    <aside class="card">
+        <h2 class="card-small-title">Sensor Maintenance</h2>
+
+        <div class="maintenance-item">
+            <strong>Adjust Schedule</strong>
+            Next checking: 15 days
+            <br><button class="schedule-btn">Schedule</button>
+        </div>
+
+        <div class="maintenance-item">
+            <strong>Firmware Update</strong>
+            Version 2.4.1 available
+            <br><button class="update-btn">Update</button>
+        </div>
+
+        <div class="maintenance-item">
+            <strong>Battery Replacement</strong>
+            <span class="maint-badge">Low battery nodes: 2</span>
+            <br><button class="check-btn">Check</button>
+        </div>
+    </aside>
+</section>
+{% endblock %}

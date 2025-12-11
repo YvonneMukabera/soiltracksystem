@@ -1,0 +1,81 @@
+{% extends "base_landing.html" %}
+{% load static %}
+
+{% block title %}SoilTrack – Landing{% endblock %}
+
+{% block content %}
+<section class="hero">
+    <div class="hero-text">
+        <h1>Welcome to SoilTrack Platform!</h1>
+        <p>Here, farmers access soil insights and tips to boost crop health, make smart choices, and farm sustainably.</p>
+        <div class="hero-buttons">
+            <button class="btn-primary">Get started</button>
+            <button class="btn-secondary">Learn more</button>
+        </div>
+    </div>
+
+    <div class="hero-img">
+        <img src="{% static 'img/landing-hero.jpg' %}" alt="Farmer checking soil sensors">
+    </div>
+</section>
+
+<section>
+    <h2 class="section-title">System Feature</h2>
+    <div class="feature-grid">
+        <div class="feature-card">
+            <h3>Real-time Soil Monitoring</h3>
+            <p>Continuously tracks soil moisture, temperature, and nutrient levels to give instant insights.</p>
+        </div>
+        <div class="feature-card">
+            <h3>AI Insight</h3>
+            <p>Suggests the best crops and actions based on soil data and environmental conditions.</p>
+        </div>
+        <div class="feature-card">
+            <h3>Historical Data Analysis</h3>
+            <p>Provides trends and comparisons using past data to help farmers make informed decisions.</p>
+        </div>
+        <div class="feature-card">
+            <h3>IoT Sensor Integration</h3>
+            <p>Connects seamlessly with wireless sensors to collect accurate, automated field data.</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <h2 class="section-title">Practical Guidance</h2>
+    <div class="practical-grid">
+        <div class="practical-card">
+            <h4>Pest Control</h4>
+            <ul>
+                <li>Use crop rotation planning</li>
+                <li>Monitor pest pressure early</li>
+                <li>Apply safe control methods</li>
+            </ul>
+        </div>
+        <div class="practical-card">
+            <h4>Storage Solutions</h4>
+            <ul>
+                <li>Maintain proper temperature</li>
+                <li>Keep harvest clean and dry</li>
+                <li>Use community storage facilities</li>
+            </ul>
+        </div>
+        <div class="practical-card">
+            <h4>Soil Health</h4>
+            <ul>
+                <li>Check soil pH regularly</li>
+                <li>Apply organic matter</li>
+                <li>Use cover crops</li>
+            </ul>
+        </div>
+        <div class="practical-card">
+            <h4>Water Management</h4>
+            <ul>
+                <li>Plan watering using moisture data</li>
+                <li>Reduce water wastage</li>
+                <li>Adjust irrigation by season</li>
+            </ul>
+        </div>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,262 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}SoilTrack System{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: #f5f7fb;
+            color: #111827;
+        }
+
+        .top-strip {
+            background: #111827;
+            color: #fff;
+            padding: 8px 18px;
+            font-size: 18px;
+        }
+
+        /* landing navbar */
+        .navbar {
+            background: #1f9d4d;
+            color: #fff;
+            padding: 12px 22px;
+        }
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 16px;
+        }
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+        }
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            font-size: 14px;
+        }
+        .nav-links a {
+            color: #e5f7ec;
+            text-decoration: none;
+        }
+        .nav-links a.active {
+            text-decoration: underline;
+            font-weight: 600;
+        }
+        .nav-right {
+            display: flex;
+            gap: 8px;
+            font-size: 13px;
+        }
+        .pill {
+            padding: 4px 10px;
+            border-radius: 999px;
+            background: #ffffff;
+            color: #111827;
+        }
+
+        main {
+            max-width: 1200px;
+            margin: 20px auto 40px;
+            padding: 0 16px;
+        }
+
+        /* hero + sections used on landing */
+        .hero {
+            display: grid;
+            grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+            gap: 24px;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+        .hero-text h1 { font-size: 26px; margin-bottom: 8px; }
+        .hero-text p { font-size: 14px; color: #4b5563; margin-bottom: 16px; }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+        .btn-primary {
+            border: none;
+            background: #1f9d4d;
+            color: #fff;
+            border-radius: 999px;
+            padding: 8px 18px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        .btn-secondary {
+            border: none;
+            background: #e5f7ec;
+            color: #166534;
+            border-radius: 999px;
+            padding: 8px 16px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .hero-img img {
+            width: 100%;
+            border-radius: 18px;
+            object-fit: cover;
+            box-shadow: 0 6px 18px rgba(15, 23, 42, 0.25);
+        }
+
+        .section-title {
+            font-size: 20px;
+            text-align: center;
+            margin: 10px 0 14px;
+        }
+
+        .feature-grid,
+        .practical-grid {
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .feature-card,
+        .practical-card {
+            background: #ffffff;
+            border-radius: 14px;
+            padding: 12px 14px;
+            box-shadow: 0 2px 8px rgba(15, 23, 42, 0.05);
+            font-size: 13px;
+        }
+        .feature-card h3,
+        .practical-card h4 {
+            font-size: 14px;
+            margin-bottom: 6px;
+        }
+        .feature-card p {
+            font-size: 12px;
+            color: #6b7280;
+        }
+        .practical-card ul {
+            margin-left: 16px;
+            list-style: disc;
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        footer {
+            background: #182942;
+            color: #e5e7eb;
+            padding: 18px 22px 22px;
+            font-size: 11px;
+            margin-top: 30px;
+        }
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 16px;
+        }
+        .footer-title { font-weight: 600; margin-bottom: 4px; }
+        .footer-inner ul { list-style: none; }
+        .footer-inner li,
+        .footer-inner p { color: #cbd5f5; margin-bottom: 3px; }
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 8px auto 0;
+            text-align: center;
+            color: #9ca3af;
+        }
+
+        @media (max-width: 900px) {
+            .nav-inner { flex-direction: column; align-items: flex-start; }
+            .hero { grid-template-columns: 1fr; }
+            .feature-grid,
+            .practical-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .footer-inner { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        }
+        @media (max-width: 640px) {
+            .nav-links { flex-wrap: wrap; }
+            .feature-grid,
+            .practical-grid,
+            .footer-inner { grid-template-columns: 1fr; }
+        }
+
+        {% block extra_css %}{% endblock %}
+    </style>
+</head>
+<body>
+    <div class="top-strip">Landing page</div>
+
+    <header class="navbar">
+        <div class="nav-inner">
+            <div class="logo-area">
+                <span>🌱</span>
+                <span>SoilTrack System</span>
+            </div>
+
+            <!-- landing has simpler nav -->
+            <nav class="nav-links">
+                <a href="{% url 'landing' %}" class="active">Home</a>
+            </nav>
+
+            <div class="nav-right">
+                <span class="pill"> English</span>
+                <span class="pill user-pill">profile</span>
+                <span class="pill"> login</span>
+                <span class="pill user-pill">admin</span>
+            </div>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <div class="footer-inner">
+            <div>
+                <div class="footer-title">SoilTrack System</div>
+                <p>Smart, data-driven support for farmers and cooperatives.</p>
+            </div>
+            <div>
+                <div class="footer-title">Features</div>
+                <ul>
+                    <li>Real-time soil monitoring</li>
+                    <li>AI crop insights</li>
+                    <li>Historical trends</li>
+                </ul>
+            </div>
+            <div>
+                <div class="footer-title">Resources</div>
+                <ul>
+                    <li>User guides</li>
+                    <li>Training sessions</li>
+                    <li>Help center</li>
+                </ul>
+            </div>
+            <div>
+                <div class="footer-title">Contact</div>
+                <ul>
+                    <li>+250 788 000 000</li>
+                    <li>support@soiltrack.rw</li>
+                    <li>Agricultural Tech Center</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2025 SoilTrack System. All rights reserved.
+        </div>
+    </footer>
+</body>
+</html>
