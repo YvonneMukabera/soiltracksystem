@@ -1,0 +1,65 @@
+{% extends "base_admin.html" %}
+
+{% block title %}User Management | Admin Portal{% endblock %}
+{% block page_title %}User Management{% endblock %}
+{% block page_subtitle %}Manage all users of SoilTrack system{% endblock %}
+
+{% block content %}
+<div class="card-row">
+    <div class="card">
+        <div class="card-title">Total Farmers</div>
+        <div class="card-value">1500</div>
+    </div>
+    <div class="card">
+        <div class="card-title">Active Today</div>
+        <div class="card-value">850</div>
+    </div>
+    <div class="card">
+        <div class="card-title">New This month</div>
+        <div class="card-value">900</div>
+    </div>
+    <div></div>
+</div>
+
+<div style="display:flex; justify-content: space-between; align-items:center; margin-bottom:10px;">
+    <div class="card-title">Farmers (3)</div>
+    <button class="btn-primary">+ Add User</button>
+</div>
+
+<div class="table-card">
+    <table>
+        <thead>
+        <tr>
+            <th>Farmers</th>
+            <th>Contact</th>
+            <th>Status</th>
+            <th>Location</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>John Doe</td>
+            <td>admin@email.com<br>+250788123456</td>
+            <td><span class="badge green">active</span></td>
+            <td>Kigali - Nyarugenge - Kiyovu</td>
+            <td>Edit</td>
+        </tr>
+        <tr>
+            <td>Geno Cadiot</td>
+            <td>yvesgenocadiot@gmail.com<br>078507290</td>
+            <td><span class="badge green">active</span></td>
+            <td>Musanze - Muhoza - Ruhengeri</td>
+            <td>Edit</td>
+        </tr>
+        <tr>
+            <td>Gihonzo Christian</td>
+            <td>+250780635650</td>
+            <td><span class="badge green">active</span></td>
+            <td>Kicukiro - Masaka - Cyimo</td>
+            <td>Edit</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+{% endblock %}

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Login | SoilTrack</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: #f5f7fb;
+            color: #111827;
+        }
+
+        .top-bar {
+            padding: 14px 18px;
+            font-size: 13px;
+        }
+
+        .top-bar a {
+            text-decoration: none;
+            color: #111827;
+        }
+
+        main {
+            max-width: 480px;
+            margin: 30px auto 40px;
+            padding: 0 16px;
+            text-align: center;
+        }
+
+        .logo-circle {
+            width: 70px;
+            height: 70px;
+            border-radius: 999px;
+            margin: 0 auto 14px;
+            background: radial-gradient(circle at 30% 30%, #4ade80, #16a34a);
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 4px;
+        }
+
+        .subtitle {
+            font-size: 13px;
+            color: #6b7280;
+            margin-bottom: 18px;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 16px;
+            padding: 18px 18px 22px;
+            box-shadow: 0 2px 10px rgba(15, 23, 42, 0.08);
+            text-align: left;
+        }
+
+        .field {
+            margin-bottom: 10px;
+        }
+
+        .field input {
+            width: 100%;
+            border-radius: 999px;
+            border: 1px solid #d1d5db;
+            padding: 9px 14px;
+            font-size: 14px;
+        }
+
+        .password-wrapper {
+            position: relative;
+        }
+
+        .password-wrapper span.eye {
+            position: absolute;
+            right: 14px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 14px;
+            color: #9ca3af;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            width: 100%;
+            margin-top: 12px;
+            border: none;
+            border-radius: 999px;
+            background: #1f9d4d;
+            color: #ffffff;
+            padding: 9px 16px;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .helper {
+            font-size: 13px;
+            margin-top: 12px;
+            text-align: center;
+        }
+
+        .helper a {
+            color: #2563eb;
+            text-decoration: none;
+        }
+
+        .helper a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="top-bar">
+    <a href="{% url 'landing' %}">← Back</a>
+</div>
+
+<main>
+    <div class="logo-circle"></div>
+    <h1>Admin Portal</h1>
+    <p class="subtitle">Sign in to your leadership account</p>
+
+    <div class="card">
+        <div class="field">
+            <input type="email" placeholder="Email address">
+        </div>
+
+        <div class="field password-wrapper">
+            <input type="password" placeholder="Password">
+            <span class="eye">&#128065;</span>
+        <button class="btn-primary"><a href="{% url 'admin_dashboard' %}" style="text-decoration:none; color:inherit;">sign in</a>
+        </button>
+
+        <p class="helper">
+            Don’t you have an account?
+            <a href="{% url 'admin_register' %}">register here</a>
+        </p>
+        <p class="helper">
+            Password forgotten?
+            <a href="{% url 'admin_password_reset' %}">Create New one here</a>
+        </p>
+    </div>
+</main>
+</body>
+</html>

@@ -2,15 +2,18 @@
 {% load static %}
 
 {% block title %}SoilTrack – Landing{% endblock %}
-
+,
 {% block content %}
 <section class="hero">
     <div class="hero-text">
         <h1>Welcome to SoilTrack Platform!</h1>
         <p>Here, farmers access soil insights and tips to boost crop health, make smart choices, and farm sustainably.</p>
         <div class="hero-buttons">
-            <button class="btn-primary">Get started</button>
-            <button class="btn-secondary">Learn more</button>
+            <button  class="btn-primary"><a href="{% url 'login_portal' %}" style="text-decoration:none; color:inherit;">get started</a>
+            </button>
+            <button class="btn-secondary">
+                <a href="{% url 'learn_more' %}" style="text-decoration:none">Learn more</a>
+                </button>
         </div>
     </div>
 

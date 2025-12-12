@@ -1,162 +1,552 @@
-{% extends "base.html" %}
 {% load static %}
-{% block title %}SoilTrack – Cooperatives{% endblock %}
-{% block page_label %}Cooperatives{% endblock %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SoilTrack – Cooperatives</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-{% block content %}
-<a href="{% url 'home' %}" class="back-link"><span>←</span>Back to Home</a>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-<div class="page-title">
-    <div>
-        <h1>Cooperative Overview</h1>
-        <p>Manage farmer groups, track members, and coordinate shared activities within your cooperative.</p>
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+            background: #f5f7fb;
+            color: #111827;
+        }
+
+        /* NAVBAR: green bar, Home center, English on the right */
+         .navbar {
+            background: #1f9d4d;
+            color: #ffffff;
+            padding: 12px 24px;
+        }
+
+        .nav-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 600;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 24px;
+            font-size: 14px;
+        }
+
+        .nav-links a {
+            color: #e5f7ec;
+            text-decoration: none;
+        }
+
+        .nav-links a.active {
+            font-weight: 600;
+            text-decoration: underline;
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 13px;
+        }
+
+        .pill {
+            background: #ffffff;
+            border-radius: 999px;
+            padding: 4px 10px;
+            font-size: 12px;
+            color: #111827;
+        }
+
+        .user-pill {
+            background: #0b7a3a;
+            color: #ffffff;
+        }
+        .lang-pill {
+            justify-self: end;
+            padding: 4px 10px;
+            border-radius: 999px;
+            border: 1px solid #ffffff;
+            background: rgba(255, 255, 255, 0.08);
+            font-size: 13px;
+            color: #ffffff;
+            cursor: pointer;
+        }
+
+        /* PAGE CONTAINER */
+        .coop-container {
+            max-width: 1200px;
+            margin: 20px auto 40px;
+            padding: 0 16px 24px;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            text-decoration: none;
+            color: #374151;
+            font-size: 13px;
+            margin-bottom: 12px;
+        }
+
+        .back-link span {
+            font-size: 14px;
+        }
+
+        .page-title {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 18px;
+        }
+
+        .page-title h1 {
+            font-size: 22px;
+            margin-bottom: 4px;
+        }
+
+        .page-title p {
+            font-size: 13px;
+            color: #6b7280;
+        }
+
+        .add-btn {
+            border: none;
+            border-radius: 999px;
+            background: #1f9d4d;
+            color: #ffffff;
+            font-size: 13px;
+            padding: 8px 16px;
+            cursor: pointer;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 14px;
+            margin-bottom: 22px;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 14px;
+        }
+
+        .card {
+            background: #ffffff;
+            border-radius: 14px;
+            padding: 12px 14px;
+            box-shadow: 0 1px 5px rgba(15, 23, 42, 0.06);
+        }
+
+        .card-title {
+            font-size: 13px;
+            color: #6b7280;
+            margin-bottom: 4px;
+        }
+
+        .card-main {
+            display: flex;
+            align-items: baseline;
+            gap: 6px;
+            margin-bottom: 4px;
+        }
+
+        .card-main .value {
+            font-size: 22px;
+            font-weight: 600;
+        }
+
+        .card-main .unit {
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .card-footnote {
+            font-size: 12px;
+            color: #9ca3af;
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 8px;
+            margin: 10px 0 8px;
+        }
+
+        .section-header h2 {
+            font-size: 16px;
+        }
+
+        .section-header span {
+            font-size: 12px;
+            color: #9ca3af;
+        }
+
+        .filter-bar {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-bottom: 12px;
+        }
+
+        .filter-bar select,
+        .filter-bar input {
+            border-radius: 999px;
+            border: 1px solid #d1d5db;
+            padding: 7px 12px;
+            font-size: 13px;
+            background: #ffffff;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            font-size: 13px;
+            background: #ffffff;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 1px 5px rgba(15, 23, 42, 0.06);
+        }
+
+        th, td {
+            padding: 8px 10px;
+            text-align: left;
+        }
+
+        thead {
+            background: #f9fafb;
+        }
+
+        tbody tr:nth-child(even) {
+            background: #f3f4f6;
+        }
+
+        .badge {
+            display: inline-block;
+            padding: 2px 8px;
+            border-radius: 999px;
+            font-size: 11px;
+        }
+
+        .badge.active {
+            background: #dcfce7;
+            color: #166534;
+        }
+
+        .badge.pending {
+            background: #fef9c3;
+            color: #92400e;
+        }
+
+        .badge.inactive {
+            background: #fee2e2;
+            color: #b91c1c;
+        }
+
+        .group-list,
+        .activity-list {
+            list-style: none;
+            margin-top: 8px;
+        }
+
+        .group-list li {
+            padding: 6px 0;
+            border-bottom: 1px solid #f3f4f6;
+        }
+
+        .group-label {
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .group-meta {
+            font-size: 12px;
+            color: #6b7280;
+        }
+
+        .activity-list li {
+            padding: 6px 0;
+            font-size: 13px;
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 8px;
+        }
+
+        .activity-tag {
+            font-size: 11px;
+            border-radius: 999px;
+            background: #e5f2ff;
+            color: #1d4ed8;
+            padding: 2px 8px;
+            white-space: nowrap;
+        }
+         footer {
+            background: #182942;
+            color: #e5e7eb;
+            padding: 18px 24px 24px;
+            font-size: 12px;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(4, minmax(0, 1fr));
+            gap: 18px;
+        }
+
+        .footer-title { font-weight: 600; margin-bottom: 6px; }
+
+        .footer-inner ul { list-style: none; }
+
+        .footer-inner li,
+        .footer-inner p {
+            font-size: 11px;
+            color: #cbd5f5;
+        }
+
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 10px auto 0;
+            font-size: 11px;
+            text-align: center;
+            color: #9ca3af;
+        }
+
+        @media (max-width: 960px) {
+            .grid-3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .grid-2 { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 640px) {
+            .grid-3 { grid-template-columns: 1fr; }
+            .page-title { flex-direction: column; align-items: flex-start; }
+        }
+    </style>
+</head>
+<body>
+
+<header class="navbar">
+    <div class="nav-inner">
+         <div class="logo">
+                <span>🌱</span>
+                <span>SoilTrack System</span>
+            </div>
+
+            <nav class="nav-links">
+                <a href="{% url 'cooperatives' %}">cooperative</a>
+                 
+            </nav>
+        <button class="lang-pill">English</button>
     </div>
-    <button class="add-btn">+ Add new member</button>
-</div>
+</header>
 
-<section class="grid-3">
-    <div class="card">
-        <div class="card-title">Total Members</div>
-        <div class="card-main">
-            <span class="value">86</span>
-            <span class="unit">farmers</span>
+<main class="coop-container">
+
+    <div class="page-title">
+        <div>
+            <h1>Cooperative Overview</h1>
+            <p>Manage farmer groups, track members, and coordinate shared activities within your cooperative.</p>
         </div>
-        <div class="card-footnote">12 new members joined this season.</div>
+        <button class="add-btn">+ Add new member</button>
     </div>
 
-    <div class="card">
-        <div class="card-title">Registered Farms</div>
-        <div class="card-main">
-            <span class="value">143</span>
-            <span class="unit">plots</span>
+    <section class="grid-3">
+        <div class="card">
+            <div class="card-title">Total Members</div>
+            <div class="card-main">
+                <span class="value">86</span>
+                <span class="unit">farmers</span>
+            </div>
+            <div class="card-footnote">12 new members joined this season.</div>
         </div>
-        <div class="card-footnote">Covering 278 ha across 4 sectors.</div>
-    </div>
 
-    <div class="card">
-        <div class="card-title">Active Groups</div>
-        <div class="card-main">
-            <span class="value">6</span>
-            <span class="unit">teams</span>
+        <div class="card">
+            <div class="card-title">Registered Farms</div>
+            <div class="card-main">
+                <span class="value">143</span>
+                <span class="unit">plots</span>
+            </div>
+            <div class="card-footnote">Covering 278 ha across 4 sectors.</div>
         </div>
-        <div class="card-footnote">Irrigation, seed purchase, storage, training &amp; more.</div>
-    </div>
-</section>
 
-<section>
-    <div class="section-header">
-        <h2>Cooperative Members</h2>
-        <span>Sample data – connect to your Django models later.</span>
-    </div>
-
-    <div class="filter-bar">
-        <select>
-            <option>All villages</option>
-            <option>Kimisagara</option>
-            <option>Muganza</option>
-            <option>Runda</option>
-        </select>
-        <select>
-            <option>All crops</option>
-            <option>Maize</option>
-            <option>Beans</option>
-            <option>Potatoes</option>
-        </select>
-        <input type="text" placeholder="Search member name…">
-    </div>
-
-    <table>
-        <thead>
-        <tr>
-            <th>Member</th>
-            <th>Village</th>
-            <th>Main Crop</th>
-            <th>Farm Size</th>
-            <th>Status</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            <td>Nyirahabineza Claire</td>
-            <td>Runda</td>
-            <td>Maize &amp; Beans</td>
-            <td>1.4 ha</td>
-            <td><span class="badge active">Active</span></td>
-        </tr>
-        <tr>
-            <td>Hakizimana Jean</td>
-            <td>Muganza</td>
-            <td>Irish potatoes</td>
-            <td>0.9 ha</td>
-            <td><span class="badge active">Active</span></td>
-        </tr>
-        <tr>
-            <td>Uwase Ange</td>
-            <td>Kimisagara</td>
-            <td>Vegetables</td>
-            <td>0.6 ha</td>
-            <td><span class="badge pending">Pending fees</span></td>
-        </tr>
-        <tr>
-            <td>Mutabazi Eric</td>
-            <td>Muganza</td>
-            <td>Cassava</td>
-            <td>1.1 ha</td>
-            <td><span class="badge inactive">Inactive</span></td>
-        </tr>
-        </tbody>
-    </table>
-</section>
-
-<section class="grid-2" style="margin-top:18px;">
-    <div class="card">
-        <div class="section-header" style="margin-top:0;">
-            <h2>Farmer Groups</h2>
-            <span>Working teams inside the cooperative.</span>
+        <div class="card">
+            <div class="card-title">Active Groups</div>
+            <div class="card-main">
+                <span class="value">6</span>
+                <span class="unit">teams</span>
+            </div>
+            <div class="card-footnote">Irrigation, seed purchase, storage, training &amp; more.</div>
         </div>
-        <ul class="group-list">
-            <li>
-                <div class="group-label">Irrigation &amp; Water Management</div>
-                <div class="group-meta">18 members · Focus: shared pumps, water scheduling</div>
-            </li>
-            <li>
-                <div class="group-label">Seed &amp; Input Purchase</div>
-                <div class="group-meta">24 members · Negotiates bulk prices for inputs</div>
-            </li>
-            <li>
-                <div class="group-label">Post-harvest &amp; Storage</div>
-                <div class="group-meta">15 members · Shared storage and drying facilities</div>
-            </li>
-            <li>
-                <div class="group-label">Training &amp; Extension</div>
-                <div class="group-meta">10 members · Coordinates with agronomists &amp; SoilTrack tips</div>
-            </li>
-        </ul>
-    </div>
+    </section>
 
-    <div class="card">
-        <div class="section-header" style="margin-top:0;">
-            <h2>Cooperative Activities</h2>
-            <span>Recent events &amp; planned actions.</span>
+    <section>
+        <div class="section-header">
+            <h2>Cooperative Members</h2>
+            <span>Sample data – connect to your Django models later.</span>
         </div>
-        <ul class="activity-list">
-            <li>
-                12 Oct – Soil health workshop with sector agronomist
-                <span class="activity-tag">Training</span>
-            </li>
-            <li>
-                18 Oct – Bulk fertilizer order for Season B
-                <span class="activity-tag">Purchase</span>
-            </li>
-            <li>
-                25 Oct – Group visit to demo smart irrigation field
-                <span class="activity-tag">Field trip</span>
-            </li>
-            <li>
-                02 Nov – General assembly &amp; savings update
-                <span class="activity-tag">Meeting</span>
-            </li>
-        </ul>
-    </div>
-</section>
-{% endblock %}
+
+        <div class="filter-bar">
+            <select>
+                <option>All villages</option>
+                <option>Kimisagara</option>
+                <option>Muganza</option>
+                <option>Runda</option>
+            </select>
+            <select>
+                <option>All crops</option>
+                <option>Maize</option>
+                <option>Beans</option>
+                <option>Potatoes</option>
+            </select>
+            <input type="text" placeholder="Search member name…">
+        </div>
+
+        <table>
+            <thead>
+            <tr>
+                <th>Member</th>
+                <th>Village</th>
+                <th>Main Crop</th>
+                <th>Farm Size</th>
+                <th>Status</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Nyirahabineza Claire</td>
+                <td>Runda</td>
+                <td>Maize &amp; Beans</td>
+                <td>1.4 ha</td>
+                <td><span class="badge active">Active</span></td>
+            </tr>
+            <tr>
+                <td>Hakizimana Jean</td>
+                <td>Muganza</td>
+                <td>Irish potatoes</td>
+                <td>0.9 ha</td>
+                <td><span class="badge active">Active</span></td>
+            </tr>
+            <tr>
+                <td>Uwase Ange</td>
+                <td>Kimisagara</td>
+                <td>Vegetables</td>
+                <td>0.6 ha</td>
+                <td><span class="badge pending">Pending fees</span></td>
+            </tr>
+            <tr>
+                <td>Mutabazi Eric</td>
+                <td>Muganza</td>
+                <td>Cassava</td>
+                <td>1.1 ha</td>
+                <td><span class="badge inactive">Inactive</span></td>
+            </tr>
+            </tbody>
+        </table>
+    </section>
+
+    <section class="grid-2" style="margin-top:18px;">
+        <div class="card">
+            <div class="section-header" style="margin-top:0;">
+                <h2>Farmer Groups</h2>
+                <span>Working teams inside the cooperative.</span>
+            </div>
+            <ul class="group-list">
+                <li>
+                    <div class="group-label">Irrigation &amp; Water Management</div>
+                    <div class="group-meta">18 members · Focus: shared pumps, water scheduling</div>
+                </li>
+                <li>
+                    <div class="group-label">Seed &amp; Input Purchase</div>
+                    <div class="group-meta">24 members · Negotiates bulk prices for inputs</div>
+                </li>
+                <li>
+                    <div class="group-label">Post-harvest &amp; Storage</div>
+                    <div class="group-meta">15 members · Shared storage and drying facilities</div>
+                </li>
+                <li>
+                    <div class="group-label">Training &amp; Extension</div>
+                    <div class="group-meta">10 members · Coordinates with agronomists &amp; SoilTrack tips</div>
+                </li>
+            </ul>
+        </div>
+
+        <div class="card">
+            <div class="section-header" style="margin-top:0;">
+                <h2>Cooperative Activities</h2>
+                <span>Recent events &amp; planned actions.</span>
+            </div>
+            <ul class="activity-list">
+                <li>
+                    12 Oct – Soil health workshop with sector agronomist
+                    <span class="activity-tag">Training</span>
+                </li>
+                <li>
+                    18 Oct – Bulk fertilizer order for Season B
+                    <span class="activity-tag">Purchase</span>
+                </li>
+                <li>
+                    25 Oct – Group visit to demo smart irrigation field
+                    <span class="activity-tag">Field trip</span>
+                </li>
+                <li>
+                    02 Nov – General assembly &amp; savings update
+                    <span class="activity-tag">Meeting</span>
+                </li>
+            </ul>
+        </div>
+    </section>
+</main>
+ <footer>
+        <div class="footer-inner">
+            <div>
+                <div class="footer-title">SoilTrack System</div>
+                <p>Smart tools to help farmers monitor soil, manage crops, and improve yields with data-driven decisions.</p>
+            </div>
+            <div>
+                <div class="footer-title">Features</div>
+                <ul>
+                    <li>Real-time Soil Monitoring</li>
+                    <li>AI Crop Insights</li>
+                    <li>Historical Data Trends</li>
+                </ul>
+            </div>
+            <div>
+                <div class="footer-title">Resources</div>
+                <ul>
+                    <li>User Guides</li>
+                    <li>Training Sessions</li>
+                    <li>Help Center</li>
+                </ul>
+            </div>
+            <div>
+                <div class="footer-title">Contact</div>
+                <ul>
+                    <li>+250 788 000 000</li>
+                    <li>support@soiltrack.rw</li>
+                    <li>Agricultural Technology Center</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2025 SoilTrack System. All rights reserved.
+        </div>
+    </footer>
+</body>
+</html>

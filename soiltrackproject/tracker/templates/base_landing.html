@@ -195,7 +195,8 @@
     </style>
 </head>
 <body>
-    <div class="top-strip">Landing page</div>
+  
+            <!--  <div class="top-strip">Landing page</div>-->
 
     <header class="navbar">
         <div class="nav-inner">
@@ -206,14 +207,16 @@
 
             <!-- landing has simpler nav -->
             <nav class="nav-links">
-                <a href="{% url 'landing' %}" class="active">Home</a>
+                <a href="{% url 'landing' %}" class="active" style="text-decoration:none; color:inherit;">Home</a>
             </nav>
 
             <div class="nav-right">
                 <span class="pill"> English</span>
                 <span class="pill user-pill">profile</span>
-                <span class="pill"> login</span>
-                <span class="pill user-pill">admin</span>
+                <span  class="pill user-pill"><a href="{% url 'login_portal' %}" style="text-decoration:none; color:inherit;">login</a>
+                    </span>
+                <span  class="pill user-pill"><a href="{% url 'admin_login' %}" style="text-decoration:none; color:inherit;">admin</a>
+                    </span>
             </div>
             </div>
         </div>

@@ -1,0 +1,68 @@
+{% extends "base_admin.html" %}
+
+{% block title %}Notifications | Admin Portal{% endblock %}
+{% block page_title %}Notifications{% endblock %}
+{% block page_subtitle %}Monitor and manage system alerts{% endblock %}
+
+{% block content %}
+<div class="card" style="background:#fefce8; margin-bottom:10px;">
+    System Maintenance Scheduled<br>
+    <span class="muted-note">Scheduled maintenance on October 15th from 2:00 AM to 4:00 AM</span>
+</div>
+<div class="card" style="background:#fee2e2; margin-bottom:14px;">
+    Sensor Offline<br>
+    <span class="muted-note">Sensor SN-0042B in Field A - West has been offline for 2 days</span>
+</div>
+
+<div class="table-card">
+    <div class="card-title">Recent Alerts</div>
+    <table>
+        <thead>
+        <tr>
+            <th>ALERT-ID</th>
+            <th>TYPE</th>
+            <th>FIELD/SENSOR</th>
+            <th>TIME</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>AL-124</td>
+            <td>Low battery</td>
+            <td>SN-200</td>
+            <td>25 minutes ago</td>
+            <td class="badge green">resolved</td>
+        </tr>
+        <tr>
+            <td>AL-080</td>
+            <td>Temp alert</td>
+            <td>FieldB</td>
+            <td>5 hours ago</td>
+            <td class="badge green">resolved</td>
+        </tr>
+        <tr>
+            <td>AL-200</td>
+            <td>moisture alert</td>
+            <td>FieldA</td>
+            <td>1 day ago</td>
+            <td class="badge red">Unresolved</td>
+        </tr>
+        <tr>
+            <td>AL-201</td>
+            <td>sensor offline</td>
+            <td>SN-080</td>
+            <td>2 days ago</td>
+            <td class="badge red">unresolved</td>
+        </tr>
+        <tr>
+            <td>AL-230</td>
+            <td>low battery</td>
+            <td>FieldC</td>
+            <td>1 hour ago</td>
+            <td class="badge green">resolved</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+{% endblock %}
