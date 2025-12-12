@@ -1,0 +1,71 @@
+{% extends "base_admin.html" %}
+
+{% block title %}Settings | Admin Portal{% endblock %}
+{% block page_title %}Settings{% endblock %}
+{% block page_subtitle %}Configure system parameters and preferences{% endblock %}
+
+{% block content %}
+<div class="table-card" style="margin-bottom:16px;">
+    <div class="card-title" style="margin-bottom:10px;">General settings</div>
+    <div style="display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin-bottom:10px;">
+        <div>
+            <label style="font-size:12px;">System name</label>
+            <input type="text" value="SoilTrack system"
+                   style="width:100%; margin-top:3px; padding:7px 10px; border-radius:8px; border:1px solid #d1d5db;">
+        </div>
+        <div>
+            <label style="font-size:12px;">Time zone</label>
+            <select style="width:100%; margin-top:3px; padding:7px 10px; border-radius:8px; border:1px solid #d1d5db;">
+                <option>GMT+1(EAST AFRICA)</option>
+            </select>
+        </div>
+        <div>
+            <label style="font-size:12px;">Language</label>
+            <select style="width:100%; margin-top:3px; padding:7px 10px; border-radius:8px; border:1px solid #d1d5db;">
+                <option>English</option>
+            </select>
+        </div>
+        <div>
+            <label style="font-size:12px;">Date format</label>
+            <select style="width:100%; margin-top:3px; padding:7px 10px; border-radius:8px; border:1px solid #d1d5db;">
+                <option>DD/MM/YYYY</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="card-title" style="margin:10px 0 6px;">Notification settings</div>
+    <div style="display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px; margin-bottom:10px;">
+        <div> Email Notifications </div>
+        <div> SMS Alerts for critical issues </div>
+    </div>
+
+    <div class="card-title" style="margin:10px 0 6px;">Sensor settings</div>
+    <div style="display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:12px;">
+        <div>
+            <label style="font-size:12px;">PH Min limit</label>
+            <input type="text" value="6.0"
+                   style="width:100%; margin-top:3px; padding:7px 10px; border-radius:8px; border:1px solid #d1d5db;">
+        </div>
+        <div>
+            <label style="font-size:12px;">PH Max limit</label>
+            <input type="text" value="7.0"
+                   style="width:100%; margin-top:3px; padding:7px 10px; border-radius:8px; border:1px solid #d1d5db;">
+        </div>
+        <div>
+            <label style="font-size:12px;">Moisture Min (%)</label>
+            <input type="text" value="25"
+                   style="width:100%; margin-top:3px; padding:7px 10px; border-radius:8px; border:1px solid #d1d5db;">
+        </div>
+        <div>
+            <label style="font-size:12px;">Moisture Max (%)</label>
+            <input type="text" value="40"
+                   style="width:100%; margin-top:3px; padding:7px 10px; border-radius:8px; border:1px solid #d1d5db;">
+        </div>
+    </div>
+
+    <div style="margin-top:14px; display:flex; gap:10px;">
+        <button class="btn-primary">Save Settings</button>
+        <button class="btn-outline">Reset to default</button>
+    </div>
+</div>
+{% endblock %}

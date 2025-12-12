@@ -1,0 +1,61 @@
+{% extends "base_admin.html" %}
+
+{% block title %}Fields Management | Admin Portal{% endblock %}
+{% block page_title %}Fields Management{% endblock %}
+{% block page_subtitle %}Manage agricultural fields and their properties{% endblock %}
+
+{% block content %}
+<div style="display:flex; justify-content: space-between; align-items:center; margin-bottom:10px;">
+    <div class="card-title">Active fields</div>
+    <button class="btn-primary">+ Add Field</button>
+</div>
+
+<div class="table-card">
+    <table>
+        <thead>
+        <tr>
+            <th>Field-ID</th>
+            <th>Name</th>
+            <th>Location</th>
+            <th>Size(Ha)</th>
+            <th>Crop type</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>F-001</td>
+            <td>North Field</td>
+            <td>SectionA</td>
+            <td>12.5</td>
+            <td>Wheat</td>
+            <td><span class="badge green">Active</span></td>
+        </tr>
+        <tr>
+            <td>F-002</td>
+            <td>South Field</td>
+            <td>SectionB</td>
+            <td>8.2</td>
+            <td>Corn</td>
+            <td><span class="badge green">Active</span></td>
+        </tr>
+        <tr>
+            <td>F-003</td>
+            <td>Easter Field</td>
+            <td>SectionC</td>
+            <td>15.7</td>
+            <td>SoyaBeans</td>
+            <td><span class="badge green">Active</span></td>
+        </tr>
+        <tr>
+            <td>F-004</td>
+            <td>West Field</td>
+            <td>SectionD</td>
+            <td>10.3</td>
+            <td>Cassava</td>
+            <td><span class="badge yellow">Ready for harvest</span></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+{% endblock %}

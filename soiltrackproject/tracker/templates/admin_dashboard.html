@@ -1,0 +1,61 @@
+{% extends "base_admin.html" %}
+
+{% block title %}Dashboard Overview | Admin Portal{% endblock %}
+{% block page_title %}Dashboard overview{% endblock %}
+{% block page_subtitle %}Control access and oversee crop cultivation activities.{% endblock %}
+
+{% block content %}
+<div class="card-row">
+    <div class="card">
+        <div class="card-title">Total Users</div>
+        <div class="card-value">311</div>
+        <div class="card-note">↑ 12% from last month</div>
+    </div>
+    <div class="card">
+        <div class="card-title">Active sensors</div>
+        <div class="card-value">1144</div>
+        <div class="card-note">↑ 30% from last month</div>
+    </div>
+    <div class="card">
+        <div class="card-title">AI Insights</div>
+        <div class="card-value">895</div>
+        <div class="card-note">↑ 12% from last month</div>
+    </div>
+    <div class="card">
+        <div class="card-title">Active fields</div>
+        <div class="card-value">99%</div>
+        <div class="card-note">Excellent performance</div>
+    </div>
+</div>
+
+<div class="chart-row">
+    <div class="chart-box">
+        <div class="chart-title">User growth</div>
+        <div class="chart-placeholder"></div>
+    </div>
+    <div class="chart-box">
+        <div class="chart-title">System performance</div>
+        <div class="chart-placeholder"></div>
+    </div>
+</div>
+
+<div class="table-card">
+    <div class="card-title">Recent system activity</div>
+    <table>
+        <tbody>
+        <tr>
+            <td><span class="badge green"></span> New Farmer registered</td>
+            <td>Muhiirwa Allain</td>
+        </tr>
+        <tr>
+            <td><span class="badge yellow"></span> AI Prediction</td>
+            <td>Weather forecast</td>
+        </tr>
+        <tr>
+            <td><span class="badge red"></span> System Alert</td>
+            <td>High server load detected</td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+{% endblock %}

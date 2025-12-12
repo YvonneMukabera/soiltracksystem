@@ -1,0 +1,73 @@
+{% extends "base_admin.html" %}
+
+{% block title %}Sensor Network | Admin Portal{% endblock %}
+{% block page_title %}Sensors network{% endblock %}
+{% block page_subtitle %}Monitor and manage all sensors on network{% endblock %}
+
+{% block content %}
+<div class="card-row">
+    <div class="card">
+        <div class="card-title">Processing</div>
+        <div class="card-value">298</div>
+        <div class="card-note">Processing 47 requests</div>
+    </div>
+    <div class="card">
+        <div class="card-title">Maintenance required</div>
+        <div class="card-value">32</div>
+        <div class="card-note muted-note">Check schedule</div>
+    </div>
+    <div class="card">
+        <div class="card-title">Offline</div>
+        <div class="card-value">12</div>
+        <div class="card-note red">Investigate</div>
+    </div>
+    <div></div>
+</div>
+
+<div style="display:flex; gap:10px; margin-bottom:12px;">
+    <button class="btn-secondary">Start Monitoring</button>
+    <button class="btn-primary">Stop services</button>
+</div>
+
+<div class="table-card">
+    <div class="card-title">Sensor Nodes</div>
+    <table>
+        <thead>
+        <tr>
+            <th>SENSOR-ID</th>
+            <th>LOCATION</th>
+            <th>type</th>
+            <th>Battery</th>
+            <th>Actions</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td>SN-124</td>
+            <td>FieldA-North</td>
+            <td>Soil moisture</td>
+            <td>87%</td>
+            <td>View</td>
+            <td><span class="badge green">Operational</span></td>
+        </tr>
+        <tr>
+            <td>SN-080</td>
+            <td>FieldC-South</td>
+            <td>PH sensor</td>
+            <td>92%</td>
+            <td>View</td>
+            <td><span class="badge green">Operational</span></td>
+        </tr>
+        <tr>
+            <td>SN-200</td>
+            <td>FieldA-West</td>
+            <td>NPK sensor</td>
+            <td>45%</td>
+            <td>View</td>
+            <td><span class="badge red">Maintenance</span></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+{% endblock %}
