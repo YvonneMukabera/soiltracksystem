@@ -728,11 +728,26 @@
             </div>
 
             <nav class="nav-links">
-                <a href="{% url 'home' %}">Home</a>
-                <a href="{% url 'ai_insights' %}">AI Insights</a>
-                <a href="{% url 'sensor' %}">Sensors</a>
-                <a href="{% url 'history' %}">History</a>
-                <a href="{% url 'crops' %}">Crops</a>
+                <a href="{% url 'home' %}"
+                   class="{% if request.resolver_match.url_name == 'home' %}active{% endif %}">
+                    Home
+                </a>
+                <a href="{% url 'ai_insights' %}"
+                   class="{% if request.resolver_match.url_name == 'ai_insights' %}active{% endif %}">
+                    AI Insights
+                </a>
+                <a href="{% url 'sensor' %}"
+                   class="{% if request.resolver_match.url_name == 'sensor' %}active{% endif %}">
+                    Sensors
+                </a>
+                <a href="{% url 'history' %}"
+                   class="{% if request.resolver_match.url_name == 'history' %}active{% endif %}">
+                    History
+                </a>
+                <a href="{% url 'crops' %}"
+                   class="{% if request.resolver_match.url_name == 'crops' %}active{% endif %}">
+                    Crops
+                </a>
             </nav>
 
             <div class="nav-right">

@@ -15,8 +15,8 @@
             color: #111827;
         }
 
-        /* NAVBAR: green bar, Home center, English on the right */
-         .navbar {
+        /* NAVBAR: green bar */
+        .navbar {
             background: #1f9d4d;
             color: #ffffff;
             padding: 12px 24px;
@@ -72,6 +72,7 @@
             background: #0b7a3a;
             color: #ffffff;
         }
+
         .lang-pill {
             justify-self: end;
             padding: 4px 10px;
@@ -296,7 +297,8 @@
             padding: 2px 8px;
             white-space: nowrap;
         }
-         footer {
+
+        footer {
             background: #182942;
             color: #e5e7eb;
             padding: 18px 24px 24px;
@@ -344,15 +346,15 @@
 
 <header class="navbar">
     <div class="nav-inner">
-         <div class="logo">
-                <span>🌱</span>
-                <span>SoilTrack System</span>
-            </div>
+        <div class="logo">
+            <span>🌱</span>
+            <span>SoilTrack System</span>
+        </div>
 
-            <nav class="nav-links">
-                <a href="{% url 'cooperatives' %}">cooperative</a>
-                 
-            </nav>
+        <nav class="nav-links">
+            <a href="{% url 'cooperatives' %}" class="active">Cooperative</a>
+        </nav>
+
         <button class="lang-pill">English</button>
     </div>
 </header>
@@ -361,8 +363,20 @@
 
     <div class="page-title">
         <div>
-            <h1>Cooperative Overview</h1>
-            <p>Manage farmer groups, track members, and coordinate shared activities within your cooperative.</p>
+            <h1>
+                {% if cooperative %}
+                    {{ cooperative.name }}
+                {% else %}
+                    Cooperative Overview
+                {% endif %}
+            </h1>
+            <p>
+                {% if cooperative %}
+                    Manage farmer groups, track members, and coordinate shared activities within {{ cooperative.name }}.
+                {% else %}
+                    Manage farmer groups, track members, and coordinate shared activities within your cooperative.
+                {% endif %}
+            </p>
         </div>
         <button class="add-btn">+ Add new member</button>
     </div>
@@ -371,19 +385,33 @@
         <div class="card">
             <div class="card-title">Total Members</div>
             <div class="card-main">
-                <span class="value">86</span>
+                <span class="value">
+                    {{ cooperative.member_count|default:"0" }}
+                </span>
                 <span class="unit">farmers</span>
             </div>
-            <div class="card-footnote">12 new members joined this season.</div>
+            <div class="card-footnote">
+                {% if cooperative %}
+                    {{ cooperative.member_count }} members registered in this cooperative.
+                {% else %}
+                    No cooperative data yet.
+                {% endif %}
+            </div>
         </div>
 
         <div class="card">
             <div class="card-title">Registered Farms</div>
             <div class="card-main">
-                <span class="value">143</span>
+                <span class="value">
+                    {% if cooperative and cooperative.field_count %}
+                        {{ cooperative.field_count }}
+                    {% else %}
+                        0
+                    {% endif %}
+                </span>
                 <span class="unit">plots</span>
             </div>
-            <div class="card-footnote">Covering 278 ha across 4 sectors.</div>
+            <div class="card-footnote">Connect more fields to see detailed stats.</div>
         </div>
 
         <div class="card">
@@ -399,7 +427,13 @@
     <section>
         <div class="section-header">
             <h2>Cooperative Members</h2>
-            <span>Sample data – connect to your Django models later.</span>
+            <span>
+                {% if farmers %}
+                    Showing {{ farmers|length }} members in this cooperative.
+                {% else %}
+                    No members yet. Add farmers to the cooperative.
+                {% endif %}
+            </span>
         </div>
 
         <div class="filter-bar">
@@ -429,34 +463,33 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <td>Nyirahabineza Claire</td>
-                <td>Runda</td>
-                <td>Maize &amp; Beans</td>
-                <td>1.4 ha</td>
-                <td><span class="badge active">Active</span></td>
-            </tr>
-            <tr>
-                <td>Hakizimana Jean</td>
-                <td>Muganza</td>
-                <td>Irish potatoes</td>
-                <td>0.9 ha</td>
-                <td><span class="badge active">Active</span></td>
-            </tr>
-            <tr>
-                <td>Uwase Ange</td>
-                <td>Kimisagara</td>
-                <td>Vegetables</td>
-                <td>0.6 ha</td>
-                <td><span class="badge pending">Pending fees</span></td>
-            </tr>
-            <tr>
-                <td>Mutabazi Eric</td>
-                <td>Muganza</td>
-                <td>Cassava</td>
-                <td>1.1 ha</td>
-                <td><span class="badge inactive">Inactive</span></td>
-            </tr>
+            {% for farmer in farmers %}
+                <tr>
+                    <td>{{ farmer.full_name }}</td>
+                    <td>{{ farmer.village }}</td>
+                    <td>{{ farmer.main_crop }}</td>
+                    <td>
+                        {% if farmer.farm_size_ha %}
+                            {{ farmer.farm_size_ha }} ha
+                        {% else %}
+                            —
+                        {% endif %}
+                    </td>
+                    <td>
+                        {% if farmer.status == "active" %}
+                            <span class="badge active">Active</span>
+                        {% elif farmer.status == "pending" %}
+                            <span class="badge pending">Pending fees</span>
+                        {% else %}
+                            <span class="badge inactive">Inactive</span>
+                        {% endif %}
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="5">No farmers registered yet.</td>
+                </tr>
+            {% endfor %}
             </tbody>
         </table>
     </section>
@@ -513,40 +546,41 @@
         </div>
     </section>
 </main>
- <footer>
-        <div class="footer-inner">
-            <div>
-                <div class="footer-title">SoilTrack System</div>
-                <p>Smart tools to help farmers monitor soil, manage crops, and improve yields with data-driven decisions.</p>
-            </div>
-            <div>
-                <div class="footer-title">Features</div>
-                <ul>
-                    <li>Real-time Soil Monitoring</li>
-                    <li>AI Crop Insights</li>
-                    <li>Historical Data Trends</li>
-                </ul>
-            </div>
-            <div>
-                <div class="footer-title">Resources</div>
-                <ul>
-                    <li>User Guides</li>
-                    <li>Training Sessions</li>
-                    <li>Help Center</li>
-                </ul>
-            </div>
-            <div>
-                <div class="footer-title">Contact</div>
-                <ul>
-                    <li>+250 788 000 000</li>
-                    <li>support@soiltrack.rw</li>
-                    <li>Agricultural Technology Center</li>
-                </ul>
-            </div>
+
+<footer>
+    <div class="footer-inner">
+        <div>
+            <div class="footer-title">SoilTrack System</div>
+            <p>Smart tools to help farmers monitor soil, manage crops, and improve yields with data-driven decisions.</p>
         </div>
-        <div class="footer-bottom">
-            © 2025 SoilTrack System. All rights reserved.
+        <div>
+            <div class="footer-title">Features</div>
+            <ul>
+                <li>Real-time Soil Monitoring</li>
+                <li>AI Crop Insights</li>
+                <li>Historical Data Trends</li>
+            </ul>
         </div>
-    </footer>
+        <div>
+            <div class="footer-title">Resources</div>
+            <ul>
+                <li>User Guides</li>
+                <li>Training Sessions</li>
+                <li>Help Center</li>
+            </ul>
+        </div>
+        <div>
+            <div class="footer-title">Contact</div>
+            <ul>
+                <li>+250 788 000 000</li>
+                <li>support@soiltrack.rw</li>
+                <li>Agricultural Technology Center</li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        © 2025 SoilTrack System. All rights reserved.
+    </div>
+</footer>
 </body>
 </html>
